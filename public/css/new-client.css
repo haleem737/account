@@ -1,0 +1,15 @@
+.form-new-client {
+    background-color: #fff;
+    padding: 10px 20px 20px 20px;
+    border: 1px solid #b3b3b3;
+    margin-top: 15px
+    }
+    .form-new-client h4 {
+    border-bottom:1px solid #7f7161;
+    padding-bottom:10px; text-align: center;
+    color: #7f7161; font-size: 24px;
+    }
+    .form-new-client .form-control {
+    background: #f2f2f2; border: 1px solid #cccccc;
+    border-radius: 0;
+    }
