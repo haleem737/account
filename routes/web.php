@@ -20,3 +20,5 @@ Route::resource('orders', 'OrdersController');
 
 Route::get('/client/create', 'clientsController@create');
 Route::get('/order/create', 'ordersController@create');
+
+Route::get('find-client', 'AjaxController@findClient');
