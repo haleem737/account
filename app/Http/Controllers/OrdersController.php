@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class OrdersController extends Controller
 {
@@ -23,7 +24,10 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $dateAndTime = Carbon::now();
+        $ksaTime = $dateAndTime->addHours(3);
+        $date = $ksaTime->format('d-m-Y');
+        return view('orders.create')->with('date',$date);
     }
 
     /**

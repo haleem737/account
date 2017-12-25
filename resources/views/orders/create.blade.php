@@ -43,7 +43,7 @@ Add New Client
 
         <!-- date -->
         <div class='col-md-3'>
-            <h3>Date:</h3>
+            <h3>Date: {{$date}}</h3>
         </div>
 
     </div>
