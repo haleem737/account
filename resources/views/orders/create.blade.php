@@ -3,19 +3,19 @@
 
 <!-- page title -->
 @section('title')
-Add New Client
+Create New Order
 @endsection('title')
 
 <!-- custome css -->
 @section('style')
 <style>
-.active{background:red}
-.active:hover{background:black}
-.dropdown-item:hover{background:red}
+/* add style for dropdown client search results */
+.active{background:skyblue}
+.dropdown-item:hover{background:skyblue}
 </style>
 @endsection('style')
 
-<!--Page Content -->    
+<!--Page Content -->
 @section('content')
 
 <div class='container-fluid'>
@@ -23,7 +23,7 @@ Add New Client
     <!-- order no -->
     <div class='row'>
         <div class='col-md-12'>
-            <h2 align='center'>JOB ORDER NO <span style='color:red'><b>#0001</b></span></h2>
+            <h2 align='center'>JOB ORDER NO <span style='color:red'><b>#{{$newOrderNum}}</b></span></h2>
         </div>
     </div>
 
@@ -34,8 +34,8 @@ Add New Client
 
             <div class='col-md-6'>
                 <div class="form-group">
-                    <label for="formGroupExampleInput"><h3>Client Name</h3></label>
-                    <input type="text" name="country" id="country" class="form-control form-control-lg" autocomplete="off" placeholder="search" />
+                    <label for="formGroupExampleInput"><h4>Client Name</h4></label>
+                    <input type="text" name="client-name" id="client-name" class="form-control form-control-lg" autocomplete="off" placeholder="search" />
                 </div>
             </div>
 
@@ -43,14 +43,14 @@ Add New Client
 
         <!-- date -->
         <div class='col-md-3'>
-            <h3>Date: {{$date}}</h3>
+            <h4>Date: {{$date}}</h4>
         </div>
 
     </div>
 
     <div class='row'>
 
-  
+
     </div>
 
 </div>
@@ -61,9 +61,10 @@ Add New Client
 <script>
 $(document).ready(function(){
 
-    $('#country').typeahead({
-        source: function(query, result)
-        {
+    // using typehahead plugin to search for client from database
+    $('#client-name').typeahead({
+        highlight: true,
+        source: function(query, result){
          $.ajax({
           url:"{{ URL::to('find-client') }}",
           method:"GET",
@@ -71,45 +72,13 @@ $(document).ready(function(){
           dataType:"json",
           success:function(data)
           {
-           result($.map(data, function(item){
-            return item;
+           result($.map(data, function(client){
+            return client;
            }));
           }
          })
         }
        });
-      
-    /*$( function() {
-        var availableTags = [
-          "ActionScript",
-          "AppleScript",
-          "Asp",
-          "BASIC",
-          "C",
-          "C++",
-          "Clojure",
-          "COBOL",
-          "ColdFusion",
-          "Erlang",
-          "Fortran",
-          "Groovy",
-          "Haskell",
-          "Java",
-          "JavaScript",
-          "Lisp",
-          "Perl",
-          "PHP",
-          "Python",
-          "Ruby",
-          "Scala",
-          "Scheme"
-        ];
-        $( "#country" ).autocomplete({
-          source: "{{ URL::to('find-client') }}"
-        });
-
-      } );*/
-        
 
 });
 </script>

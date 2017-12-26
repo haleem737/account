@@ -21,4 +21,5 @@ Route::resource('orders', 'OrdersController');
 Route::get('/client/create', 'clientsController@create');
 Route::get('/order/create', 'ordersController@create');
 
+// jquery function used in orders.create page to search for client name
 Route::get('find-client', 'AjaxController@findClient');

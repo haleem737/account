@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Order;
 
 class OrdersController extends Controller
 {
@@ -24,10 +25,19 @@ class OrdersController extends Controller
      */
     public function create()
     {
+        // get new job order number
+        $lastOrderRecord = Order::latest()->first();
+        $newOrderNo =  $lastOrderRecord->order_id + 1;
+        // add 000 to order no
+        $newOrderNoPadded= sprintf("%04d", $newOrderNo);
+        
+        // get current date
         $dateAndTime = Carbon::now();
         $ksaTime = $dateAndTime->addHours(3);
         $date = $ksaTime->format('d-m-Y');
-        return view('orders.create')->with('date',$date);
+
+        
+        return view('orders.create')->with('date',$date)->with('newOrderNum',$newOrderNoPadded);
     }
 
     /**
